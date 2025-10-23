@@ -2,6 +2,7 @@ package racingcar.domain;
 
 import org.junit.jupiter.api.Test;
 import racingcar.exception.InvalidCarException;
+import racingcar.exception.Message;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -24,7 +25,7 @@ class CarTest {
 
         assertThatThrownBy(() -> new Car(name))
                 .isInstanceOf(InvalidCarException.class)
-                .hasMessage("자동차의 이름은 빈 값이거나 공백 문자열일 수 없습니다.");
+                .hasMessage(Message.CAR_NAME_NULL_OR_BLANK.getMessage());
     }
 
     @Test
@@ -33,7 +34,7 @@ class CarTest {
 
         assertThatThrownBy(() -> new Car(name))
                 .isInstanceOf(InvalidCarException.class)
-                .hasMessage("자동차의 이름은 빈 값이거나 공백 문자열일 수 없습니다.");
+                .hasMessage(Message.CAR_NAME_NULL_OR_BLANK.getMessage());
     }
 
     @Test
@@ -42,7 +43,7 @@ class CarTest {
 
         assertThatThrownBy(() -> new Car(name))
                 .isInstanceOf(InvalidCarException.class)
-                .hasMessage("자동차의 이름은 빈 값이거나 공백 문자열일 수 없습니다.");
+                .hasMessage(Message.CAR_NAME_NULL_OR_BLANK.getMessage());
     }
 
     @Test
@@ -51,6 +52,6 @@ class CarTest {
 
         assertThatThrownBy(() -> new Car(name))
                 .isInstanceOf(InvalidCarException.class)
-                .hasMessage("자동차의 이름은 1자 이상 5자 이하여야 합니다.");
+                .hasMessage(Message.CAR_NAME_LENGTH_OUT_OF_RANGE.getMessage());
     }
 }

@@ -1,6 +1,7 @@
 package racingcar.domain;
 
 import racingcar.exception.InvalidCarException;
+import racingcar.exception.Message;
 import racingcar.util.StringValidator;
 
 public class Car {
@@ -37,11 +38,11 @@ public class Car {
 
     private void validateNameNotNullOrBlank(String name) {
         if (!StringValidator.isNullOrBlank(name)) return;
-        throw new InvalidCarException("자동차의 이름은 빈 값이거나 공백 문자열일 수 없습니다.");
+        throw new InvalidCarException(Message.CAR_NAME_NULL_OR_BLANK.getMessage());
     }
 
     private void validateNameLength(String name) {
         if (StringValidator.isWithinLengthRange(name, MIN_CAR_NAME_LENGTH, MAX_CAR_NAME_LENGTH)) return;
-        throw new InvalidCarException("자동차의 이름은 1자 이상 5자 이하여야 합니다.");
+        throw new InvalidCarException(Message.CAR_NAME_LENGTH_OUT_OF_RANGE.getMessage());
     }
 }
