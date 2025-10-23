@@ -21,6 +21,10 @@ public class Cars {
         return cars.stream().map(Car::getName).collect(Collectors.toList());
     }
 
+    public List<Car> getCars() {
+        return cars;
+    }
+
     private void validateCarNames(String carNames) {
         validateCommaNotAtEnds(carNames);
         validateNoConsecutiveCommas(carNames);
