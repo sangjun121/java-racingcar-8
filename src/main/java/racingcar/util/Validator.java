@@ -2,9 +2,9 @@ package racingcar.util;
 
 import java.util.List;
 
-public class StringValidator {
+public class Validator {
 
-    private StringValidator() {
+    private Validator() {
     }
 
     public static boolean isNullOrBlank(String target) {
@@ -28,5 +28,9 @@ public class StringValidator {
         return target.stream()
                 .distinct()
                 .count() != target.size();
+    }
+
+    public static boolean isLessThan(int target, int threshold) {
+        return target < threshold;
     }
 }

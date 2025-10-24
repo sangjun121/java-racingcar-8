@@ -2,7 +2,7 @@ package racingcar.domain;
 
 import racingcar.exception.InvalidCarsException;
 import racingcar.exception.Message;
-import racingcar.util.StringValidator;
+import racingcar.util.Validator;
 
 import java.util.Arrays;
 import java.util.List;
@@ -37,17 +37,17 @@ public class Cars {
     }
 
     private void validateCommaNotAtEnds(String carNames) {
-        if (!StringValidator.startsOrEndsWith(carNames, COMMA)) return;
+        if (!Validator.startsOrEndsWith(carNames, COMMA)) return;
         throw new InvalidCarsException(Message.CAR_NAMES_COMMA_AT_START_OR_END.getMessage());
     }
 
     private void validateNoConsecutiveCommas(String carNames) {
-        if (!StringValidator.containsConsecutiveSubstring(carNames, COMMA)) return;
+        if (!Validator.containsConsecutiveSubstring(carNames, COMMA)) return;
         throw new InvalidCarsException(Message.CAR_NAMES_CONSECUTIVE_COMMA_PRESENT.getMessage());
     }
 
     private void validateNoDuplicateNames(List<String> carNames) {
-        if (!StringValidator.hasDuplicates(carNames)) return;
+        if (!Validator.hasDuplicates(carNames)) return;
         throw new InvalidCarsException(Message.CAR_NAME_DUPLICATED.getMessage());
     }
 }
