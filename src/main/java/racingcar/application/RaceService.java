@@ -13,12 +13,15 @@ import java.util.List;
 import java.util.Map;
 
 public class RaceService {
-    // TODO: 반환 값 Result로 수정
-    public void run(String carNamesInput, String tryCountInput) {
+
+    public Result run(String carNamesInput, String tryCountInput) {
         Cars cars = new Cars(carNamesInput);
         int tryCount = parseTryCount(tryCountInput);
 
         List<Result.RoundResult> roundResults = startRace(cars, tryCount);
+        List<String> winners = findWinners(cars);
+
+        return new Result(roundResults, winners);
     }
 
     private List<Result.RoundResult> startRace(Cars cars, int tryCount) {
@@ -41,6 +44,10 @@ public class RaceService {
         }
 
         return new Result.RoundResult(roundNumber, roundResult);
+    }
+
+    private List<String> findWinners(Cars cars) {
+        return cars.getCarNamesWithMaxDistance();
     }
 
     private int parseTryCount(String input) {

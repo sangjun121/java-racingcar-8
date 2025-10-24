@@ -24,6 +24,11 @@ public class Cars {
         }
     }
 
+    public List<String> getCarNamesWithMaxDistance() {
+        int maxDistance = findMaxDistance(cars);
+        return findMaxDistanceCarNames(cars, maxDistance);
+    }
+
     public List<String> getCarNames() {
         return cars.stream().map(Car::getName).collect(Collectors.toList());
     }
@@ -32,15 +37,29 @@ public class Cars {
         return cars;
     }
 
-    private void validateCarNames(String carNames) {
-        validateCommaNotAtEnds(carNames);
-        validateNoConsecutiveCommas(carNames);
-    }
-
     private List<Car> createCars(String carNames) {
         List<String> carNameList = Arrays.asList(carNames.split(COMMA));
         validateNoDuplicateNames(carNameList);
         return carNameList.stream().map(Car::new).collect(Collectors.toList());
+    }
+
+    private int findMaxDistance(List<Car> cars) {
+        return cars.stream()
+                .mapToInt(Car::getDistance)
+                .max()
+                .orElse(0);
+    }
+
+    private List<String> findMaxDistanceCarNames(List<Car> cars, int maxDistance) {
+        return cars.stream()
+                .filter(car -> car.getDistance() == maxDistance)
+                .map(Car::getName)
+                .toList();
+    }
+
+    private void validateCarNames(String carNames) {
+        validateCommaNotAtEnds(carNames);
+        validateNoConsecutiveCommas(carNames);
     }
 
     private void validateCommaNotAtEnds(String carNames) {
