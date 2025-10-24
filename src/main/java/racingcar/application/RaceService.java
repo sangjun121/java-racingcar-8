@@ -7,17 +7,16 @@ import racingcar.exception.InvalidInputException;
 import racingcar.exception.Message;
 import racingcar.util.Validator;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class RaceService {
+    private static final String COMMA = ",";
 
     public Result run(String carNamesInput, String tryCountInput) {
-        Cars cars = new Cars(carNamesInput);
+        List<String> carNames = parseCarNames(carNamesInput);
         int tryCount = parseTryCount(tryCountInput);
 
+        Cars cars = new Cars(carNames);
         List<Result.RoundResult> roundResults = startRace(cars, tryCount);
         List<String> winners = findWinners(cars);
 
@@ -50,6 +49,11 @@ public class RaceService {
         return cars.getCarNamesWithMaxDistance();
     }
 
+    private List<String> parseCarNames(String input) {
+        validateCarNamesInput(input);
+        return List.of(input.split(COMMA));
+    }
+
     private int parseTryCount(String input) {
         try {
             int tryCount = Integer.parseInt(input);
@@ -62,6 +66,21 @@ public class RaceService {
 
     private void validateTryCount(int tryCount) {
         validateTryCountIsPositive(tryCount);
+    }
+
+    private void validateCarNamesInput(String carNamesInput) {
+        checkNoCommaAtEnds(carNamesInput);
+        checkNoConsecutiveCommas(carNamesInput);
+    }
+
+    private void checkNoCommaAtEnds(String carNamesInput) {
+        if (!Validator.startsOrEndsWith(carNamesInput, COMMA)) return;
+        throw new InvalidInputException(Message.CAR_NAMES_COMMA_AT_START_OR_END.getMessage());
+    }
+
+    private void checkNoConsecutiveCommas(String carNamesInput) {
+        if (!Validator.containsConsecutiveSubstring(carNamesInput, COMMA)) return;
+        throw new InvalidInputException(Message.CAR_NAMES_CONSECUTIVE_COMMA_PRESENT.getMessage());
     }
 
     private void validateTryCountIsPositive(int tryCount) {

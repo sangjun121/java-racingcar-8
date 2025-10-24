@@ -2,7 +2,7 @@ package racingcar.exception;
 
 public class InvalidInputException extends IllegalArgumentException {
     public InvalidInputException() {
-        super(Message.INVALID_TRY_COUNT.getMessage());
+        super(Message.INVALID_INPUT.getMessage());
     }
 
     public InvalidInputException(String message) {
