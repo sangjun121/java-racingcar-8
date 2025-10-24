@@ -9,6 +9,7 @@ public class Car {
     private static final int MAX_CAR_NAME_LENGTH = 5;
     private static final int INITIAL_DISTANCE = 0;
     private static final int MOVE_UNIT = 1;
+    private static final int MOVE_THRESHOLD = 4;
 
     private final String name;
     private int distance;
@@ -27,8 +28,12 @@ public class Car {
         return distance;
     }
 
-    public void move() {
-        this.distance += MOVE_UNIT;
+    public void move(int condition) {
+        if (canMove(condition)) this.distance += MOVE_UNIT;
+    }
+
+    private boolean canMove(int condition) {
+        return condition >= MOVE_THRESHOLD;
     }
 
     private void validateName(String name) {

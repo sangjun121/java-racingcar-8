@@ -2,6 +2,7 @@ package racingcar.domain;
 
 import racingcar.exception.InvalidCarsException;
 import racingcar.exception.Message;
+import racingcar.util.RandomNumberGenerator;
 import racingcar.util.Validator;
 
 import java.util.Arrays;
@@ -15,6 +16,12 @@ public class Cars {
     public Cars(String carNames) {
         validateCarNames(carNames);
         this.cars = createCars(carNames);
+    }
+
+    public void move() {
+        for (Car car : cars) {
+            car.move(RandomNumberGenerator.generate());
+        }
     }
 
     public List<String> getCarNames() {
