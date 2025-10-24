@@ -27,7 +27,7 @@
     - 형식: `최종 우승자 : {이름1}, {이름2}, ...`
 
 ### 🚗 입력 문자열 파싱
-
+- [x] 시도 횟수 문자열을 숫자로 변환한다.
 - [x] 자동차 이름 문자열에서 쉼표를 기준으로 이름을 추출한다.
 
 ### 🚗 출력 문자열 포멧팅
@@ -58,10 +58,10 @@
 
 ### 🚗 검증
 
-- [ ] 시도할 횟수 숫자 입력값 검증
-  - [ ] 숫자가 아닌 경우 `IllegalArgumentException` 이 발생한다.
-  - [ ] 음수인 경우 `IllegalArgumentException`이 발생한다.
-  - [ ] int형 범위를 벗어나는 경우 `IllegalArgumentException`이 발생한다.
+- [x] 시도할 횟수 숫자 입력값 검증
+  - [x] 정수가 아닌 경우 `IllegalArgumentException` 이 발생한다.
+  - [x] 양수가 아닌 경우 `IllegalArgumentException`이 발생한다.
+  - [x] int형 범위를 벗어나는 경우 `IllegalArgumentException`이 발생한다.
 - [x] 자동차 이름 입력값 검증
   - [x] 쉼표는 문자열의 맨 앞,뒤,혹은 연속으로 위치할 수 없다.
 - [x] 자동차 이름 단위 검증 (1개 단위)
