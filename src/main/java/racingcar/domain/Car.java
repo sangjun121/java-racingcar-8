@@ -37,16 +37,16 @@ public class Car {
     }
 
     private void validateName(String name) {
-        validateNameNotNullOrBlank(name);
-        validateNameLength(name);
+        checkNotNullOrBlank(name);
+        checkNameLength(name);
     }
 
-    private void validateNameNotNullOrBlank(String name) {
+    private void checkNotNullOrBlank(String name) {
         if (!Validator.isNullOrBlank(name)) return;
         throw new InvalidCarException(Message.CAR_NAME_NULL_OR_BLANK.getMessage());
     }
 
-    private void validateNameLength(String name) {
+    private void checkNameLength(String name) {
         if (Validator.isWithinLengthRange(name, MIN_CAR_NAME_LENGTH, MAX_CAR_NAME_LENGTH)) return;
         throw new InvalidCarException(Message.CAR_NAME_LENGTH_OUT_OF_RANGE.getMessage());
     }
