@@ -8,6 +8,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class CarTest {
+    private static final String VALID_CAR_NAME = "pobi";
+    private static final int INITIAL_DISTANCE = 0;
 
     @Test
     void 올바른_자동차_이름으로_자동차를_생성한다() {
@@ -53,5 +55,27 @@ class CarTest {
         assertThatThrownBy(() -> new Car(name))
                 .isInstanceOf(InvalidCarException.class)
                 .hasMessage(Message.CAR_NAME_LENGTH_OUT_OF_RANGE.getMessage());
+    }
+
+    @Test
+    void 숫자_4이상인_경우_자동차는_한칸_움직인다() {
+        String name = VALID_CAR_NAME;
+        int condition = 4;
+
+        Car car = new Car(name);
+        car.move(condition);
+
+        assertThat(car.getDistance()).isEqualTo(INITIAL_DISTANCE + 1);
+    }
+
+    @Test
+    void 숫자_4이상이_아닌_경우_자동차는_움직이지_않는다() {
+        String name = VALID_CAR_NAME;
+        int condition = 3;
+
+        Car car = new Car(name);
+        car.move(condition);
+
+        assertThat(car.getDistance()).isEqualTo(INITIAL_DISTANCE);
     }
 }
