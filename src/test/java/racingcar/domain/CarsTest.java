@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class CarsTest {
 
     @Test
-    void 자동차_이름들이_올바른_경우(){
+    void 자동차_이름들이_올바른_경우() {
         List<String> carNames = List.of("pobi", "woni", "jun");
 
         Cars cars = new Cars(carNames);

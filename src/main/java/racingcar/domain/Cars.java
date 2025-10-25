@@ -56,6 +56,7 @@ public class Cars {
     private void validateCarNames(List<String> carNames) {
         checkNoDuplicateNames(carNames);
     }
+
     private void checkNoDuplicateNames(List<String> carNames) {
         if (!Validator.hasDuplicates(carNames)) return;
         throw new InvalidCarException(Message.CAR_NAME_DUPLICATED.getMessage());
