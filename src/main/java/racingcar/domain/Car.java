@@ -29,7 +29,9 @@ public class Car {
     }
 
     public void move(int condition) {
-        if (canMove(condition)) this.distance += MOVE_UNIT;
+        if (canMove(condition)) {
+            this.distance += MOVE_UNIT;
+        }
     }
 
     private boolean canMove(int condition) {
@@ -42,12 +44,16 @@ public class Car {
     }
 
     private void checkNotNullOrBlank(String name) {
-        if (!Validator.isNullOrBlank(name)) return;
+        if (!Validator.isNullOrBlank(name)) {
+            return;
+        }
         throw new InvalidCarException(Message.CAR_NAME_NULL_OR_BLANK.getMessage());
     }
 
     private void checkNameLength(String name) {
-        if (Validator.isWithinLengthRange(name, MIN_CAR_NAME_LENGTH, MAX_CAR_NAME_LENGTH)) return;
+        if (Validator.isWithinLengthRange(name, MIN_CAR_NAME_LENGTH, MAX_CAR_NAME_LENGTH)) {
+            return;
+        }
         throw new InvalidCarException(Message.CAR_NAME_LENGTH_OUT_OF_RANGE.getMessage());
     }
 }

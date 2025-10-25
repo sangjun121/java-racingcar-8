@@ -75,22 +75,30 @@ public class RaceService {
     }
 
     private void checkNotNullAndBlank(String carNamesInput) {
-        if (!Validator.isNullOrBlank(carNamesInput)) return;
+        if (!Validator.isNullOrBlank(carNamesInput)) {
+            return;
+        }
         throw new InvalidInputException(Message.CAR_NAMES_NULL_OR_BLANK.getMessage());
     }
 
     private void checkNoCommaAtEnds(String carNamesInput) {
-        if (!Validator.startsOrEndsWith(carNamesInput, COMMA)) return;
+        if (!Validator.startsOrEndsWith(carNamesInput, COMMA)) {
+            return;
+        }
         throw new InvalidInputException(Message.CAR_NAMES_COMMA_AT_START_OR_END.getMessage());
     }
 
     private void checkNoConsecutiveCommas(String carNamesInput) {
-        if (!Validator.containsConsecutiveSubstring(carNamesInput, COMMA)) return;
+        if (!Validator.containsConsecutiveSubstring(carNamesInput, COMMA)) {
+            return;
+        }
         throw new InvalidInputException(Message.CAR_NAMES_CONSECUTIVE_COMMA_PRESENT.getMessage());
     }
 
     private void checkTryCountIsPositive(int tryCount) {
-        if (Validator.isBiggerThan(tryCount, 0)) return;
+        if (Validator.isBiggerThan(tryCount, 0)) {
+            return;
+        }
         throw new InvalidInputException(Message.TRY_COUNT_NEGATIVE_OR_ZERO.getMessage());
     }
 }
