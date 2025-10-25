@@ -2,6 +2,7 @@ package racingcar.exception;
 
 public enum Message {
     INVALID_INPUT("올바르지 않은 입력입니다."),
+    CAR_NAMES_NULL_OR_BLANK("자동차 이름들 입력 문자열은 null이거나 빈칸일 수 없습니다."),
     CAR_NAMES_COMMA_AT_START_OR_END("자동차 이름들 입력 문자열 맨 앞 혹은 뒤에 쉼표가 위치합니다."),
     CAR_NAMES_CONSECUTIVE_COMMA_PRESENT("자동차 이름 입력 문자열에 쉼표가 연속될 수 없습니다."),
     TRY_COUNT_NEGATIVE_OR_ZERO("시도 횟수는 양수여야 합니다."),

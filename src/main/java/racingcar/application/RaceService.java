@@ -69,8 +69,14 @@ public class RaceService {
     }
 
     private void validateCarNamesInput(String carNamesInput) {
+        checkNotNullAndBlank(carNamesInput);
         checkNoCommaAtEnds(carNamesInput);
         checkNoConsecutiveCommas(carNamesInput);
+    }
+
+    private void checkNotNullAndBlank(String carNamesInput) {
+        if (!Validator.isNullOrBlank(carNamesInput)) return;
+        throw new InvalidInputException(Message.CAR_NAMES_NULL_OR_BLANK.getMessage());
     }
 
     private void checkNoCommaAtEnds(String carNamesInput) {
