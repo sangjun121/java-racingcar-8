@@ -65,7 +65,7 @@ public class RaceService {
     }
 
     private void validateTryCount(int tryCount) {
-        validateTryCountIsPositive(tryCount);
+        checkTryCountIsPositive(tryCount);
     }
 
     private void validateCarNamesInput(String carNamesInput) {
@@ -89,7 +89,7 @@ public class RaceService {
         throw new InvalidInputException(Message.CAR_NAMES_CONSECUTIVE_COMMA_PRESENT.getMessage());
     }
 
-    private void validateTryCountIsPositive(int tryCount) {
+    private void checkTryCountIsPositive(int tryCount) {
         if (Validator.isBiggerThan(tryCount, 0)) return;
         throw new InvalidInputException(Message.TRY_COUNT_NEGATIVE_OR_ZERO.getMessage());
     }
