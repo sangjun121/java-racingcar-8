@@ -2,7 +2,7 @@ package racingcar.util;
 
 import java.util.List;
 
-public class Validator {
+public final class Validator {
 
     private Validator() {
     }
