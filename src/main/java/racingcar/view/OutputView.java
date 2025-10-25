@@ -1,6 +1,6 @@
 package racingcar.view;
 
-import racingcar.domain.Result;
+import racingcar.controller.dto.Result;
 
 import java.util.List;
 import java.util.Map;

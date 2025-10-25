@@ -1,6 +1,6 @@
 package racingcar.controller;
 
-import racingcar.domain.Result;
+import racingcar.controller.dto.Result;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 import racingcar.application.RaceService;

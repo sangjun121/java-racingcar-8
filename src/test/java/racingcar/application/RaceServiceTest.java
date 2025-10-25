@@ -4,7 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import racingcar.domain.Result;
+import racingcar.controller.dto.Result;
 import racingcar.exception.InvalidInputException;
 import racingcar.exception.Message;
 

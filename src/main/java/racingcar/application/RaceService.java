@@ -2,7 +2,7 @@ package racingcar.application;
 
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
-import racingcar.domain.Result;
+import racingcar.controller.dto.Result;
 import racingcar.exception.InvalidInputException;
 import racingcar.exception.Message;
 import racingcar.util.Validator;
