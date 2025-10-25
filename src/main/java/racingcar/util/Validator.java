@@ -30,10 +30,6 @@ public class Validator {
                 .count() != target.size();
     }
 
-    public static boolean isLessThan(int target, int threshold) {
-        return target < threshold;
-    }
-
     public static boolean isBiggerThan(int target, int threshold) {
         return target > threshold;
     }
