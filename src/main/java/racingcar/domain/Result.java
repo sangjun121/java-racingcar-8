@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -17,7 +19,7 @@ public record Result(
                               Map<String, Integer> carPositions) {
 
         public RoundResult {
-            carPositions = Map.copyOf(carPositions);
+            carPositions = Collections.unmodifiableMap(new LinkedHashMap<>(carPositions));
         }
     }
 }

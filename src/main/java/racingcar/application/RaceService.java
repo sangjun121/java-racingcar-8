@@ -35,7 +35,7 @@ public class RaceService {
     }
 
     private Result.RoundResult startRound(int roundNumber, Cars cars) {
-        Map<String, Integer> roundResult = new HashMap<>();
+        Map<String, Integer> roundResult = new LinkedHashMap<>();
         cars.move();
 
         for (Car car : cars.getCars()) {
