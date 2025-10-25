@@ -14,6 +14,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class RaceServiceTest {
+    private static final String VALID_CAR_NAMES_INPUT = "pobi,woni,jun";
     private static final String VALID_TRY_COUNT_INPUT = "5";
 
     private RaceService raceService;
@@ -30,9 +31,20 @@ class RaceServiceTest {
 
         Result result = raceService.run(carNamesInput, tryCountInput);
         List<String> actualCarNames = result.roundResults().getFirst()
-                        .carPositions().keySet().stream().toList();
+                .carPositions().keySet().stream().toList();
 
         assertThat(String.join(",", actualCarNames)).isEqualTo(carNamesInput);
+    }
+
+    @Test
+    void 올바른_시도_횟수_문자열이_입력된_경우() {
+        String carNamesInput = VALID_CAR_NAMES_INPUT;
+        String tryCountInput = "5";
+
+        Result result = raceService.run(carNamesInput, tryCountInput);
+        int actualTryCount = result.roundResults().size();
+
+        assertThat(actualTryCount).isEqualTo(Integer.parseInt(tryCountInput));
     }
 
     @ParameterizedTest
@@ -53,5 +65,55 @@ class RaceServiceTest {
         assertThatThrownBy(() -> raceService.run(carNamesInput, tryCountInput))
                 .isInstanceOf(InvalidInputException.class)
                 .hasMessage(Message.CAR_NAMES_CONSECUTIVE_COMMA_PRESENT.getMessage());
+    }
+
+    @Test
+    void 시도_횟수_입력값이_null_값인_경우_예외_발생() {
+        String carNamesInput = VALID_CAR_NAMES_INPUT;
+        String tryCountInput = null;
+
+        assertThatThrownBy(() -> raceService.run(carNamesInput, tryCountInput))
+                .isInstanceOf(InvalidInputException.class)
+                .hasMessage(Message.TRY_COUNT_NOT_AN_INTEGER.getMessage());
+    }
+
+    @Test
+    void 시도_횟수_입력값이_빈_문자인_경우_예외_발생() {
+        String carNamesInput = VALID_CAR_NAMES_INPUT;
+        String tryCountInput = "";
+
+        assertThatThrownBy(() -> raceService.run(carNamesInput, tryCountInput))
+                .isInstanceOf(InvalidInputException.class)
+                .hasMessage(Message.TRY_COUNT_NOT_AN_INTEGER.getMessage());
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {" ", "a", "one"})
+    void 시도_횟수_입력값이_숫자가_아닌_경우_예외_발생(String tryCountInput) {
+        String carNamesInput = VALID_CAR_NAMES_INPUT;
+
+        assertThatThrownBy(() -> raceService.run(carNamesInput, tryCountInput))
+                .isInstanceOf(InvalidInputException.class)
+                .hasMessage(Message.TRY_COUNT_NOT_AN_INTEGER.getMessage());
+    }
+
+    @Test
+    void 시도_횟수_입력값이_정수가_아닌_경우_예외_발생() {
+        String carNamesInput = VALID_CAR_NAMES_INPUT;
+        String tryCountInput = "1.1";
+
+        assertThatThrownBy(() -> raceService.run(carNamesInput, tryCountInput))
+                .isInstanceOf(InvalidInputException.class)
+                .hasMessage(Message.TRY_COUNT_NOT_AN_INTEGER.getMessage());
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"0", "-0", "-100"})
+    void 시도_횟수_입력값이_양수가_아닌_경우_예외_발생(String tryCountInput) {
+        String carNamesInput = VALID_CAR_NAMES_INPUT;
+
+        assertThatThrownBy(() -> raceService.run(carNamesInput, tryCountInput))
+                .isInstanceOf(InvalidInputException.class)
+                .hasMessage(Message.TRY_COUNT_NEGATIVE_OR_ZERO.getMessage());
     }
 }
